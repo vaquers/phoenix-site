@@ -1,0 +1,364 @@
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  color: #0D3B66;
+}
+
+/* Фон световых лучей на весь экран */
+.prism-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Отступ под фиксированное меню */
+.page-main {
+  padding-top: 160px;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Hero */
+
+.hero {
+  margin-bottom: 80px;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+  color: #FAF0CA;
+}
+
+.hero-subtitle {
+  margin: 0;
+  max-width: 640px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #FAF0CA;
+}
+
+/* Секции — по центру; заголовки NauryzRedKeds, остальной текст SF Pro */
+
+.section {
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px - 160px);
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+}
+
+.section .container {
+  text-align: center;
+  width: 100%;
+}
+
+.section + .section {
+  border-top: 1px solid rgba(13, 59, 102, 0.15);
+}
+
+.section-accent {
+  background: linear-gradient(135deg, #FAF0CA, #F4D35E);
+  border-radius: 32px;
+  margin-inline: 1rem;
+}
+
+.section-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  margin: 0 0 0.75rem;
+  color: #EE964B;
+}
+
+.section-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 auto 1.75rem;
+  max-width: 680px;
+  color: #FAF0CA;
+  line-height: 1.75;
+}
+
+/* Карточки — по центру */
+
+.section-card {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 18px 45px rgba(13, 59, 102, 0.12), 0 0 0 1px rgba(13, 59, 102, 0.1);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-accent .section-card {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.card-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0D3B66;
+}
+
+.card-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0D3B66;
+  line-height: 1.75;
+}
+
+/* Сетка для карточек команды */
+
+.team-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tilted-card-overlay-text {
+  font-family: 'NauryzRedKeds', sans-serif;
+  white-space: pre-line;
+  font-size: 1.1rem;
+  color: #FAF0CA;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.tilted-card-name {
+  color: #F4D35E;
+}
+
+/* Кнопки */
+
+.primary-button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: #EE964B;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(13, 59, 102, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(13, 59, 102, 0.25);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 26px rgba(13, 59, 102, 0.2);
+}
+
+/* Секция «Про нас» — 3D-иконки, крупный текст, без карточек */
+
+.about-section .section-title.about-title {
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.about-intro {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: #FAF0CA;
+  max-width: 960px;
+  margin: 0 auto 3rem;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  align-items: start;
+}
+
+.about-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.about-block-image {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-block-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.about-block-value {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #EE964B;
+  line-height: 1.1;
+}
+
+.about-block-label {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-weight: 600;
+  color: #FAF0CA;
+}
+
+.about-block-uptime .about-block-value {
+  display: none;
+}
+
+.about-uptime {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 0.75rem;
+  margin: 0.15rem 0;
+}
+
+.about-uptime-unit {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: #EE964B;
+}
+
+.about-uptime-unit em {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  color: #EE964B;
+  margin-right: 0.2em;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  padding: 0.9rem 2.5rem;
+  border-radius: 9999px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.about-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-btn-news {
+  background: #EE964B;
+  color: #000;
+}
+
+.about-btn-team {
+  background: #0D3B66;
+  color: #fff;
+}
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+  .page-main {
+    padding-top: 140px;
+    padding-bottom: 64px;
+  }
+
+  .hero {
+    margin-bottom: 64px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-card {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .section-accent {
+    border-radius: 24px;
+    margin-inline: 0.75rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-block-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .about-uptime {
+    gap: 0.3rem 0.5rem;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-btn {
+    padding: 0.85rem 1.25rem;
+    font-size: 1.05rem;
+  }
+}

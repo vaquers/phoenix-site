@@ -1,0 +1,9 @@
+.telegram-post {
+  margin-top: 1.5rem;
+  max-width: 100%;
+}
+
+.telegram-post iframe {
+  border-radius: 12px;
+  overflow: hidden;
+}

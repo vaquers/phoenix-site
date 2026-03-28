@@ -1,0 +1,213 @@
+#infinite-grid-menu-canvas {
+  cursor: grab;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  outline: none;
+}
+
+#infinite-grid-menu-canvas:active {
+  cursor: grabbing;
+}
+
+.action-button {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: #EE964B;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid #0D3B66;
+}
+
+.face-title {
+  user-select: none;
+  position: absolute;
+  font-weight: 900;
+  font-size: 3rem;
+  left: 1.6em;
+  top: 50%;
+  color: #FAF0CA;
+  font-family: 'NauryzRedKeds', -apple-system, sans-serif;
+}
+
+.face-title.active {
+  opacity: 1;
+  transform: translate(20%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-title.inactive {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.face-description {
+  user-select: none;
+  position: absolute;
+  max-width: 10ch;
+  top: 50%;
+  font-size: 1.2rem;
+  right: 1%;
+  transform: translate(0, -50%);
+  color: #FAF0CA;
+}
+
+.face-description.active {
+  opacity: 1;
+  transform: translate(-90%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-description.inactive {
+  pointer-events: none;
+  transform: translate(-60%, -50%);
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.action-button {
+  position: absolute;
+  left: 50%;
+}
+
+.action-button.active {
+  bottom: 3.8em;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.action-button.inactive {
+  bottom: -80px;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease;
+}
+
+.action-button-icon {
+  user-select: none;
+  position: relative;
+  color: #fff;
+  top: 2px;
+  font-size: 26px;
+}
+
+@media (max-width: 1500px) {
+  .face-title,
+  .face-description {
+    display: none;
+  }
+}
+
+/* Модальное окно записи — цветное фото (портал в body, без наследования filter) */
+.infinite-menu-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  isolation: isolate;
+  filter: none;
+}
+
+.infinite-menu-modal {
+  position: relative;
+  background: #0D3B66;
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  cursor: default;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  border: 2px solid #EE964B;
+}
+
+.infinite-menu-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #FAF0CA;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.infinite-menu-modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.infinite-menu-modal-image-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000;
+  flex-shrink: 0;
+  isolation: isolate;
+  filter: none;
+}
+
+.infinite-menu-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: none; /* явно цветное, без наследования grayscale */
+}
+
+.infinite-menu-modal-title {
+  margin: 1rem 1.25rem 0.5rem;
+  font-family: 'NauryzRedKeds', -apple-system, sans-serif;
+  font-size: 1.5rem;
+  color: #F4D35E;
+}
+
+.infinite-menu-modal-description {
+  margin: 0 1.25rem 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #FAF0CA;
+}
+
+.infinite-menu-modal-link-btn {
+  display: block;
+  margin: 0 1.25rem 1.25rem;
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 9999px;
+  background: #EE964B;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.infinite-menu-modal-link-btn:hover {
+  filter: brightness(1.1);
+}

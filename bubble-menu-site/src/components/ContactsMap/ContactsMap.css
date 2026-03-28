@@ -1,0 +1,16 @@
+.contacts-map {
+  width: 100%;
+  max-width: 534px;
+  height: 430px;
+  margin: 1.5rem auto 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(13, 59, 102, 0.15);
+}
+
+.contacts-map iframe {
+  display: block;
+  border: none;
+  width: 100%;
+  height: 100%;
+}

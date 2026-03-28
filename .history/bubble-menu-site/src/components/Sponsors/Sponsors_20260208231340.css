@@ -1,0 +1,132 @@
+/* Сетка карточек — по референсу: вертикальные карточки с тенью */
+.sponsors-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin-top: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Карточка: скруглённые углы, тень, в цветах сайта */
+.sponsor-card {
+  background: #0D3B66;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(244, 211, 94, 0.2);
+  min-height: 520px;
+}
+
+/* Верхний блок — изображение ~55–60% высоты карточки */
+.sponsor-card-hero {
+  position: relative;
+  flex: 0 0 58%;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.sponsor-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Градиент внизу изображения — переход в блок текста */
+.sponsor-card-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(to top, #0D3B66 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Текстовый блок — в цветах сайта */
+.sponsor-card-body {
+  flex: 1;
+  padding: 1.5rem 1.5rem 1.75rem;
+  background: #0D3B66;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.sponsor-card-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #EE964B;
+  margin-bottom: 0.35rem;
+}
+
+.sponsor-card-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FAF0CA;
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+
+.sponsor-card-description {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(250, 240, 202, 0.92);
+  margin: 0;
+}
+
+/* Топ-3: медаль в левом верхнем углу изображения, сильно увеличена */
+.sponsor-card-top3 .sponsor-card-hero {
+  position: relative;
+}
+
+/* Блок медали: 140px — диаметр медали, текст по окружности radius 70 = по краю */
+.sponsor-medal-wrap {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sponsor-card-top3 .sponsors-circular-text {
+  position: absolute;
+  margin: 0;
+  width: 160px;
+  height: 160px;
+  color: #F4D35E;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.sponsor-card-top3 .circular-text span {
+  font-size: 15px;
+  color: #FAF0CA;
+  font-weight: 900;
+}
+
+/* Медаль: диаметр 140px, текст идёт по краю (radius 70) */
+.sponsor-medal-img {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.sponsor-card-regular .sponsor-card-body .sponsor-card-title {
+  margin-top: 0;
+}

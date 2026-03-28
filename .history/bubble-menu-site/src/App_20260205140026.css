@@ -1,0 +1,225 @@
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  color: #0f172a;
+}
+
+/* Фон световых лучей на весь экран */
+.prism-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Отступ под фиксированное меню */
+.page-main {
+  padding-top: 160px;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Hero */
+
+.hero {
+  margin-bottom: 80px;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+  color: #020617;
+}
+
+.hero-subtitle {
+  margin: 0;
+  max-width: 640px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+/* Секции — по центру; заголовки NauryzRedKeds, остальной текст Lighthaus */
+
+.section {
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px - 160px);
+  box-sizing: border-box;
+  font-family: 'Lighthaus', sans-serif;
+}
+
+.section .container {
+  text-align: center;
+  width: 100%;
+}
+
+.section + .section {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.section-accent {
+  background: linear-gradient(135deg, #eff6ff, #fefce8);
+  border-radius: 32px;
+  margin-inline: 1rem;
+}
+
+.section-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  margin: 0 0 0.75rem;
+  color: #ff7700;
+}
+
+.section-text {
+  font-family: 'Lighthaus', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 auto 1.75rem;
+  max-width: 680px;
+  /* светлый текст на тёмном фоне под Prism */
+  color: #e5e7eb;
+  line-height: 1.75;
+}
+
+/* Карточки — по центру */
+
+.section-card {
+  font-family: 'Lighthaus', sans-serif;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-accent .section-card {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.card-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-text {
+  font-family: 'Lighthaus', sans-serif;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  /* тёмный текст внутри светлой карточки */
+  color: #374151;
+  line-height: 1.75;
+}
+
+/* Сетка для карточек команды */
+
+.team-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tilted-card-overlay-text {
+  font-family: 'NauryzRedKeds', sans-serif;
+  white-space: pre-line;
+  font-size: 1.1rem;
+  color: #e5e7eb;
+
+  /* подложка для читабельности */
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.tilted-card-name {
+  color: #ff7a1a;
+}
+
+/* Кнопки */
+
+.primary-button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow:
+    0 10px 30px rgba(37, 99, 235, 0.35),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 40px rgba(37, 99, 235, 0.4),
+    0 0 0 1px rgba(37, 99, 235, 0.25);
+  filter: brightness(1.02);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 10px 26px rgba(37, 99, 235, 0.35),
+    0 0 0 1px rgba(37, 99, 235, 0.3);
+}
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+  .page-main {
+    padding-top: 140px;
+    padding-bottom: 64px;
+  }
+
+  .hero {
+    margin-bottom: 64px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-card {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .section-accent {
+    border-radius: 24px;
+    margin-inline: 0.75rem;
+  }
+}
