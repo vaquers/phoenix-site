@@ -36,31 +36,6 @@ type AboutInfo = {
   teamSize: number;
 };
 
-type TeamMemberApi = {
-  id: number;
-  name: string;
-  specialty: string;
-  description: string;
-  status: string;
-  photo_url: string;
-};
-
-type SponsorApi = {
-  id: number;
-  photo_url: string;
-  subtitle: string;
-  title: string;
-  description: string;
-  status: number;
-};
-
-type BlogPostApi = {
-  id: number;
-  number: number;
-  description: string;
-  photo_url: string;
-};
-
 type ContactsPageData = {
   description: string;
   email: string;
@@ -202,6 +177,72 @@ const teamCards: TeamCard[] = [
 
 const PROJECT_START_DATE = new Date('2024-10-27T00:00:00');
 const YEARS_IN_COMPETITIONS = 2;
+const JOIN_PAGE_DESCRIPTION =
+  'Присоединяйтесь к сообществу, чтобы учиться новому, делиться опытом и создавать полезные проекты вместе.';
+const BLOG_DESCRIPTION =
+  'Блог команды Phoenix — здесь мы делимся закулисьем подготовки, выступлений и жизни команды.';
+const SPONSORS_DESCRIPTION =
+  'Наши партнёры помогают развивать инфраструктуру, поддерживают участие в соревнованиях и образовательные инициативы команды Phoenix.';
+const CONTACTS_PAGE: ContactsPageData = {
+  description: 'Свяжитесь с нами по почте, телефону или в Telegram.',
+  email: 'contact@phoenixlbsu.com',
+  phone: '+375 (29) 811-10-10',
+  address: 'Лицей БГУ, Ульяновская 8, Минск, Беларусь',
+  telegram: '@phoenixfromlbsu'
+};
+
+const BLOG_PHOTO_FILES = [
+  'photo_2026-02-06 23.46.13.jpeg',
+  'photo_2026-02-06 23.46.21.jpeg',
+  'photo_2026-02-06 23.46.24.jpeg',
+  'photo_2026-02-06 23.46.34.jpeg',
+  'photo_2026-02-06 23.46.37.jpeg',
+  'photo_2026-02-06 23.46.51.jpeg',
+  'photo_2026-02-06 23.46.59.jpeg',
+  'photo_2026-02-06 23.47.03.jpeg',
+  'photo_2026-02-06 23.47.14.jpeg',
+  'photo_2026-02-06 23.47.22.jpeg',
+  'photo_2026-02-06 23.47.25.jpeg',
+  'photo_2026-02-06 23.47.31.jpeg',
+  'photo_2026-02-06 23.47.46.jpeg',
+  'photo_2026-02-06 23.47.53.jpeg',
+  'photo_2026-02-06 23.48.08.jpeg',
+  'photo_2026-02-06 23.48.11.jpeg',
+  'photo_2026-02-06 23.48.20.jpeg'
+];
+
+const BLOG_POSTS: BlogItem[] = BLOG_PHOTO_FILES.map((file, index) => ({
+  image: `/photos/${encodeURIComponent(file)}`,
+  link: '#',
+  title: `Запись ${String(index + 1).padStart(2, '0')}`,
+  description: 'Фото из жизни команды Phoenix.'
+}));
+
+const SPONSORS: SponsorItem[] = [
+  {
+    image: '/sponsors/gold.jpeg',
+    name: 'Золотой партнёр',
+    description: 'Ключевой партнёр, поддерживающий развитие команды и участие в соревнованиях.',
+    rank: 1
+  },
+  {
+    image: '/sponsors/silver.png',
+    name: 'Серебряный партнёр',
+    description: 'Помогает с ресурсами и образовательными инициативами Phoenix.',
+    rank: 2
+  },
+  {
+    image: '/sponsors/bronze.png',
+    name: 'Бронзовый партнёр',
+    description: 'Поддержка мероприятий, логистики и роста нашей команды.',
+    rank: 3
+  },
+  {
+    image: '/sponsors/images.jpeg',
+    name: 'Партнёр сообщества',
+    description: 'Вместе развиваем инженерное сообщество и делимся знаниями.'
+  }
+];
 
 function getSectionFromHash(hash: string): SectionId {
   const clean = hash.replace('#', '') as SectionId;
@@ -240,9 +281,7 @@ function App() {
     typeof window !== 'undefined' ? getSectionFromHash(window.location.hash || '#about') : 'about'
   );
   const [joinSubmitted, setJoinSubmitted] = useState(false);
-  const [joinPageDescription, setJoinPageDescription] = useState<string>(
-    'Присоединяйтесь к сообществу, чтобы учиться новому, делиться опытом и создавать полезные проекты вместе.'
-  );
+  const [joinPageDescription] = useState<string>(JOIN_PAGE_DESCRIPTION);
   const [joinFullName, setJoinFullName] = useState('');
   const [joinGrade, setJoinGrade] = useState('');
   const [joinProfile, setJoinProfile] = useState('');
@@ -251,65 +290,39 @@ function App() {
   const [joinRole, setJoinRole] = useState('');
   const [joinExperience, setJoinExperience] = useState('');
   const [joinMotivation, setJoinMotivation] = useState('');
-  const [aboutInfo, setAboutInfo] = useState<AboutInfo>({
+  const [aboutInfo] = useState<AboutInfo>({
     description:
       'От идеи — к результату. Мы первая беларуская команда Лиги Инженеров из Лицея БГУ! Создаем роботов сообща и вместе ищем нестандартные решения!',
     yearsInCompetitions: YEARS_IN_COMPETITIONS,
     teamSize: teamCards.length
   });
-  const [teamDescription, setTeamDescription] = useState<string>(
+  const [teamDescription] = useState<string>(
     'Это страстные и увлечённые своей работой участники команды «Phoenix LBSU». Мы соединяем экспертизу в программировании, моделировании, дизайне, проектировании и работе с сообществом, чтобы создавать инновационные решения в области робототехники.'
   );
-  const [teamMembers, setTeamMembers] = useState<TeamCard[]>(teamCards);
-  const [blogDescription, setBlogDescription] = useState<string>(
-    'Блог команды Phoenix — здесь мы делимся закулисьем подготовки, выступлений и жизни команды.'
-  );
-  const [blogPosts, setBlogPosts] = useState<BlogItem[]>([]);
-  const [sponsorsDescription, setSponsorsDescription] = useState<string>(
-    'Поддержка партнёров помогает развивать инфраструктуру и проводить больше активностей для участников.'
-  );
-  const [sponsors, setSponsors] = useState<SponsorItem[]>([]);
-  const [contactsPage, setContactsPage] = useState<ContactsPageData>({
-    description: 'Свяжитесь с нами по почте, телефону или в Telegram.',
-    email: '',
-    phone: '',
-    address: '',
-    telegram: ''
-  });
+  const [teamMembers] = useState<TeamCard[]>(teamCards);
+  const [blogDescription] = useState<string>(BLOG_DESCRIPTION);
+  const [blogPosts] = useState<BlogItem[]>(BLOG_POSTS);
+  const [sponsorsDescription] = useState<string>(SPONSORS_DESCRIPTION);
+  const [sponsors] = useState<SponsorItem[]>(SPONSORS);
+  const [contactsPage] = useState<ContactsPageData>(CONTACTS_PAGE);
   const [contactFormSent, setContactFormSent] = useState<boolean | null>(null);
   const [contactFormName, setContactFormName] = useState('');
   const [contactFormEmail, setContactFormEmail] = useState('');
   const [contactFormTelegram, setContactFormTelegram] = useState('');
   const [contactFormMessage, setContactFormMessage] = useState('');
-  const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
+  const [communityPosts] = useState<CommunityPost[]>([
+    { post_id: 120, link: 'https://t.me/phoenixlbsu/120', title: 'Phoenix LBSU' }
+  ]);
   const uptime = useProjectUptime();
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setContactFormSent(null);
-    try {
-      const res = await fetch('/api/contacts/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: contactFormName.trim(),
-          email: contactFormEmail.trim(),
-          telegram: contactFormTelegram.trim(),
-          message: contactFormMessage.trim()
-        })
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.detail || 'Ошибка отправки');
-      }
-      setContactFormSent(true);
-      setContactFormName('');
-      setContactFormEmail('');
-      setContactFormTelegram('');
-      setContactFormMessage('');
-    } catch {
-      setContactFormSent(false);
-    }
+    setContactFormSent(true);
+    setContactFormName('');
+    setContactFormEmail('');
+    setContactFormTelegram('');
+    setContactFormMessage('');
   };
 
   useEffect(() => {
@@ -323,225 +336,6 @@ function App() {
     handleHashChange();
 
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // Загружаем данные «про нас» из backend API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadAbout = async () => {
-      try {
-        const res = await fetch('/api/about');
-        if (!res.ok) return;
-        const data = await res.json();
-
-        if (!isMounted) return;
-
-        setAboutInfo(prev => ({
-          description: typeof data.description === 'string' && data.description.trim().length > 0
-            ? data.description
-            : prev.description,
-          yearsInCompetitions:
-            typeof data.years_in_competitions === 'number' ? data.years_in_competitions : prev.yearsInCompetitions,
-          teamSize: typeof data.team_size === 'number' ? data.team_size : prev.teamSize
-        }));
-      } catch {
-        // тихо игнорируем ошибку — остаёмся на значениях по умолчанию
-      }
-    };
-
-    loadAbout();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Загружаем данные страницы «Команда» из backend API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadTeam = async () => {
-      try {
-        const res = await fetch('/api/team');
-        if (!res.ok) return;
-        const data = await res.json();
-
-        if (!isMounted) return;
-
-        if (typeof data.description === 'string') {
-          setTeamDescription(data.description);
-        }
-        if (Array.isArray(data.members) && data.members.length > 0) {
-          const cards: TeamCard[] = data.members.map((m: TeamMemberApi) => ({
-            imageSrc: typeof m.photo_url === 'string' && m.photo_url.length > 0 ? m.photo_url : '',
-            altText: m.name,
-            caption: m.name,
-            name: m.name,
-            role: [m.specialty, m.status].filter(Boolean).join('\n') || '—'
-          }));
-          setTeamMembers(cards);
-        }
-      } catch {
-        // остаёмся на дефолтных teamCards
-      }
-    };
-
-    loadTeam();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Загружаем данные страницы «Спонсоры» из backend API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadSponsors = async () => {
-      try {
-        const res = await fetch('/api/sponsors');
-        if (!res.ok) return;
-        const data = await res.json();
-
-        if (!isMounted) return;
-
-        if (typeof data.description === 'string' && data.description.trim().length > 0) {
-          setSponsorsDescription(data.description);
-        }
-
-        if (Array.isArray(data.sponsors) && data.sponsors.length > 0) {
-          const items: SponsorItem[] = data.sponsors.map((s: SponsorApi) => ({
-            image: typeof s.photo_url === 'string' && s.photo_url.length > 0 ? s.photo_url : '',
-            name: s.title,
-            description: s.description,
-            rank:
-              s.status === 1 ? 1
-                : s.status === 2 ? 2
-                  : s.status === 3 ? 3
-                    : undefined
-          }));
-          setSponsors(items);
-        }
-      } catch {
-        // остаёмся на дефолтном списке (пусто)
-      }
-    };
-
-    loadSponsors();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Загружаем данные страницы «Блог» из backend API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadBlog = async () => {
-      try {
-        const res = await fetch('/api/blog');
-        if (!res.ok) return;
-        const data = await res.json();
-
-        if (!isMounted) return;
-
-        if (typeof data.description === 'string' && data.description.trim().length > 0) {
-          setBlogDescription(data.description);
-        }
-
-        if (Array.isArray(data.posts) && data.posts.length > 0) {
-          const items: BlogItem[] = data.posts.map((p: BlogPostApi) => ({
-            image: typeof p.photo_url === 'string' && p.photo_url.length > 0 ? p.photo_url : '',
-            link: '#',
-            title: `Запись ${p.number}`,
-            description: p.description || ''
-          }));
-          setBlogPosts(items);
-        }
-      } catch {
-        // остаёмся на пустом списке
-      }
-    };
-
-    loadBlog();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Загружаем данные страницы «Контакты» из backend API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadContacts = async () => {
-      try {
-        const res = await fetch('/api/contacts');
-        if (!res.ok) return;
-        const data = await res.json();
-
-        if (!isMounted) return;
-
-        setContactsPage(prev => ({
-          description: typeof data.description === 'string' ? data.description : prev.description,
-          email: typeof data.email === 'string' ? data.email : prev.email,
-          phone: typeof data.phone === 'string' ? data.phone : prev.phone,
-          address: typeof data.address === 'string' ? data.address : prev.address,
-          telegram: typeof data.telegram === 'string' ? data.telegram : prev.telegram
-        }));
-      } catch {
-        // остаёмся на дефолте
-      }
-    };
-
-    loadContacts();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Посты сообщества: загружаем при открытии раздела «Сообщество», посты обновляются при каждом заходе
-  useEffect(() => {
-    if (currentSection !== 'community') return;
-    let isMounted = true;
-
-    const loadCommunityPosts = async () => {
-      try {
-        const res = await fetch('/api/community/posts');
-        if (!res.ok) return;
-        const data = await res.json();
-        if (!isMounted || !Array.isArray(data.posts)) return;
-        setCommunityPosts(data.posts);
-      } catch {
-        setCommunityPosts([]);
-      }
-    };
-
-    loadCommunityPosts();
-    return () => {
-      isMounted = false;
-    };
-  }, [currentSection]);
-
-  // Загружаем описание страницы «Стать участником»
-  useEffect(() => {
-    let isMounted = true;
-    const loadJoin = async () => {
-      try {
-        const res = await fetch('/api/join');
-        if (!res.ok) return;
-        const data = await res.json();
-        if (!isMounted || typeof data.description !== 'string') return;
-        setJoinPageDescription(data.description);
-      } catch {
-        // остаёмся на дефолте
-      }
-    };
-    loadJoin();
-    return () => { isMounted = false; };
   }, []);
 
   const renderSection = () => {
@@ -795,31 +589,17 @@ function App() {
                 ) : (
                   <form
                     className="contact-form join-form"
-                    onSubmit={async (e) => {
+                    onSubmit={(e) => {
                       e.preventDefault();
-                      try {
-                        const res = await fetch('/api/join', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({
-                            full_name: joinFullName,
-                            grade: joinGrade,
-                            profile: joinProfile,
-                            email: joinEmail,
-                            telegram: joinTelegram,
-                            role: joinRole,
-                            experience: joinExperience,
-                            motivation: joinMotivation
-                          })
-                        });
-                        if (res.ok) setJoinSubmitted(true);
-                        else {
-                          const err = await res.json().catch(() => ({}));
-                          alert(err.detail || 'Не удалось отправить заявку.');
-                        }
-                      } catch {
-                        alert('Не удалось отправить заявку.');
-                      }
+                      setJoinSubmitted(true);
+                      setJoinFullName('');
+                      setJoinGrade('');
+                      setJoinProfile('');
+                      setJoinEmail('');
+                      setJoinTelegram('');
+                      setJoinRole('');
+                      setJoinExperience('');
+                      setJoinMotivation('');
                     }}
                   >
                     <label className="contact-form-label">
