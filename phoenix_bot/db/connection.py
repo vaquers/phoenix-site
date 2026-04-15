@@ -1,14 +1,19 @@
+import os
 import psycopg2
 
 def fetch_from_db(query, params=None):
     try:
         # Установить соединение с базой данных
-        connection = psycopg2.connect(
-            dbname="phoenix",
-            user="postgres",
-            host="localhost",
-            port="5432"
-        )
+        database_url = os.environ.get("DATABASE_URL")
+        if database_url:
+            connection = psycopg2.connect(database_url)
+        else:
+            connection = psycopg2.connect(
+                dbname="phoenix",
+                user="postgres",
+                host="localhost",
+                port="5432"
+            )
         connection.autocommit = False  # Явное управление транзакциями
         cursor = connection.cursor()
 
